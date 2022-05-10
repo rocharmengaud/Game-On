@@ -18,7 +18,7 @@ const closeBtn = document.querySelector('.close');
 modalBtn.forEach((btn) => btn.addEventListener('click', launchModal));
 
 // close modal form event
-// Lorsque l'utilisateur clique sur le bouton "fermer", la modale se ferme
+// Lorsque l'utilisateur clique sur le bouton ".close", la modale se ferme
 closeBtn.addEventListener('click', (closeModal) => {
   modalbg.style.display = 'none';
 });

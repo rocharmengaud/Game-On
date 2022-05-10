@@ -64,7 +64,7 @@
             >
               <div
                 class="formData">
-                <label>Prénom</label><br>
+                <label for="first" required>Prénom</label><br>
                 <input
                   class="text-control"
                   type="text"
@@ -75,7 +75,7 @@
               </div>
               <div
                 class="formData">
-                <label>Nom</label><br>
+                <label for="last" required>Nom</label><br>
                 <input
                   class="text-control"
                   type="text"
@@ -85,7 +85,7 @@
               </div>
               <div
                 class="formData">
-                <label>E-mail</label><br>
+                <label for="e-mail" required>E-mail</label><br>
                 <input
                   class="text-control"
                   type="email"
@@ -95,7 +95,7 @@
               </div>
               <div
                 class="formData">
-                <label>Date de naissance</label><br>
+                <label for="birthdate" required>Date de naissance</label><br>
                 <input
                   class="text-control"
                   type="date"
@@ -105,7 +105,7 @@
               </div>
               <div
                 class="formData">
-                <label>À combien de tournois GameOn avez-vous déjà participé ?</label><br>
+                <label for="quantity" required>À combien de tournois GameOn avez-vous déjà participé ?</label><br>
                 <input type="number" class="text-control" id="quantity" name="quantity" min="0" max="99">
               </div>
               <p class="text-label">A quel tournoi souhaitez-vous participer cette année ?</p>
@@ -202,7 +202,7 @@
               <input
                 class="btn-submit"
                 type="submit"
-                class="button"
+                id="submitButton"
                 value="C'est parti"
               />
             </form>
