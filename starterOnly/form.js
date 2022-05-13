@@ -89,7 +89,6 @@ const conditionsGenerales = document.querySelector('#checkbox1');
 // Checks if the user has checked the cgu
 function validateConditions() {
   if (conditionsGenerales.checked === true) {
-    console.log('ok');
     return true;
   }
   return false;
