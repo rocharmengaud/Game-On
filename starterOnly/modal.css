@@ -211,6 +211,10 @@ input {
   height: 48px;
 }
 
+.text-control:focus {
+  border: 2.5px solid #4714fe;
+}
+
 .formData {
   padding-top: 1rem;
 }
