@@ -29,6 +29,13 @@ function validateFirst() {
   } else {
     document.querySelector('.first-error').innerHTML = '';
   }
+  let regex = /^[a-zA-Z]{2,}$/;
+  if (regex.test(first.value) === false) {
+    document.querySelector('.first-error').innerHTML =
+      'Veuillez entrer un prénom valide';
+  } else {
+    document.querySelector('.first-error').innerHTML = '';
+  }
 }
 
 // Checks the last name
@@ -36,6 +43,13 @@ function validateLast() {
   const last = document.querySelector('#last');
   const lastLength = last.value.length;
   if (lastLength < 2 || lastLength === '') {
+    document.querySelector('.last-error').innerHTML =
+      'Veuillez entrer un nom valide';
+  } else {
+    document.querySelector('.last-error').innerHTML = '';
+  }
+  let regex = /^[a-zA-Z]{2,}$/;
+  if (regex.test(last.value) === false) {
     document.querySelector('.last-error').innerHTML =
       'Veuillez entrer un nom valide';
   } else {
