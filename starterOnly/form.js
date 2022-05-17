@@ -9,6 +9,7 @@ const validateInputs = () => {
   validateQuantity();
   validateLocation();
   validateConditions();
+  validateBirthdate();
 };
 
 // On crée une variable qui va contenir tous les messages d'erreur
@@ -66,6 +67,23 @@ function validateEmail() {
   return true;
 }
 
+function validateBirthdate() {
+  const birthdate = document.querySelector('#birthdate');
+  const regex = /^[0-9]{4}-[0-9]{2}-[0-9]{2}$/;
+  if (regex.test(birthdate.value) === false) {
+    console.log(
+      birthdate.value,
+      regex.test('25-02-5252'),
+      regex.test(birthdate.value)
+    );
+    document.querySelector('.birthdate-error').innerText =
+      errorMessages.birthdateError;
+    return false;
+  }
+  document.querySelector('.birthdate-error').innerText = '';
+  return true;
+}
+
 // Checks if the user has selected a quantity
 function validateQuantity() {
   const quantity = document.querySelector('#quantity');
@@ -107,12 +125,13 @@ function validateConditions() {
 }
 
 form.addEventListener('submit', (e) => {
-  // on fait en sorte que la page ne se refresh pas lorsque l'on clique sur submit
+  // Webpage not reloading after clicking on submit
   e.preventDefault();
   validateInputs();
   validateForm();
 });
 
+// Checks if the form is valid
 function validateForm() {
   if (
     validateFirst() &&
@@ -120,7 +139,8 @@ function validateForm() {
     validateEmail() &&
     validateQuantity() &&
     validateLocation() &&
-    validateConditions() === true
+    validateConditions() &&
+    validateBirthdate() === true
   ) {
     closeModal();
     alert('Merci ! Votre réservation a été reçue');
