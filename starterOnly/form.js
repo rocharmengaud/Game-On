@@ -1,8 +1,18 @@
 // on crée la variable qui va contenir le formulaire complet
 const form = document.querySelector('form');
+const first = document.querySelector('#first');
+const last = document.querySelector('#last');
+const email = document.querySelector('#email');
+const birthdate = document.querySelector('#birthdate');
+const quantity = document.querySelector('#quantity');
+// on crée la variable qui va contenir tous les boutons radio
+const radios = document.querySelectorAll('.checkbox-input[type=radio]');
+// on crée la variable qui va contenir la case des conditions générales
+const conditionsGenerales = document.querySelector('#checkbox1');
+const btnSubmit = document.querySelector('.btn-submit');
 
 // On crée une variable contenant une fonction qui va vérifier tous les champs du formulaire
-const validateInputs = () => {
+function validateInputs() {
   validateFirst();
   validateLast();
   validateEmail();
@@ -10,7 +20,7 @@ const validateInputs = () => {
   validateLocation();
   validateConditions();
   validateBirthdate();
-};
+}
 
 // On crée une variable qui va contenir tous les messages d'erreur
 const errorMessages = {
@@ -27,7 +37,6 @@ const errorMessages = {
 
 // Checks the first name
 function validateFirst() {
-  const first = document.querySelector('#first');
   // console.log(first.value);
   // .value correspond à une propriété definie d'un élément en JS
   const firstLength = first.value.length;
@@ -43,7 +52,6 @@ function validateFirst() {
 
 // Checks the last name
 function validateLast() {
-  const last = document.querySelector('#last');
   const lastLength = last.value.length;
   const regex = /^[a-zA-Z]{2,}$/;
   if (lastLength < 2 || regex.test(last.value) === false) {
@@ -57,7 +65,6 @@ function validateLast() {
 
 // Checks if the user has typed a valid e-mail format
 function validateEmail() {
-  const email = document.querySelector('#email');
   const regex = /^[a-zA-Z0-9._-]+@[a-z0-9._-]{2,}\.[a-z]{2,4}$/;
   if (regex.test(email.value) === false) {
     document.querySelector('.email-error').innerText = errorMessages.emailError;
@@ -68,14 +75,8 @@ function validateEmail() {
 }
 
 function validateBirthdate() {
-  const birthdate = document.querySelector('#birthdate');
   const regex = /^[0-9]{4}-[0-9]{2}-[0-9]{2}$/;
   if (regex.test(birthdate.value) === false) {
-    console.log(
-      birthdate.value,
-      regex.test('25-02-5252'),
-      regex.test(birthdate.value)
-    );
     document.querySelector('.birthdate-error').innerText =
       errorMessages.birthdateError;
     return false;
@@ -86,7 +87,6 @@ function validateBirthdate() {
 
 // Checks if the user has selected a quantity
 function validateQuantity() {
-  const quantity = document.querySelector('#quantity');
   const regex = /^[0-9]{1,2}$/;
   if (regex.test(quantity.value) === false) {
     document.querySelector('.quantity-error').innerText =
@@ -99,8 +99,6 @@ function validateQuantity() {
 
 // Checks if the user has selected a location
 function validateLocation() {
-  // on crée la variable qui va contenir tous les boutons radio
-  const radios = document.querySelectorAll('.checkbox-input[type=radio]');
   for (let radio of radios) {
     if (radio.checked === true) {
       document.querySelector('.location-error').innerText = '';
@@ -114,8 +112,6 @@ function validateLocation() {
 
 // Checks if the user has checked the cgu
 function validateConditions() {
-  // on crée la variable qui va contenir la case des conditions générales
-  const conditionsGenerales = document.querySelector('#checkbox1');
   if (conditionsGenerales.checked === true) {
     document.querySelector('.cgu-error').innerText = '';
     return true;
@@ -124,6 +120,7 @@ function validateConditions() {
   return false;
 }
 
+// On écoute le submit du formulaire et on lui fait executer la fonction validateForm
 form.addEventListener('submit', (e) => {
   // Webpage not reloading after clicking on submit
   e.preventDefault();
@@ -133,6 +130,8 @@ form.addEventListener('submit', (e) => {
 
 // Checks if the form is valid
 function validateForm() {
+  const formData = document.querySelectorAll('.formData');
+  const textLabel = document.querySelector('.text-label');
   if (
     validateFirst() &&
     validateLast() &&
@@ -142,7 +141,29 @@ function validateForm() {
     validateConditions() &&
     validateBirthdate() === true
   ) {
-    closeModal();
-    alert('Merci ! Votre réservation a été reçue');
+    for (const forms of formData) {
+      forms.classList.add('hide');
+    }
+    textLabel.classList.add('hide');
+    let div = document.createElement('div');
+    document.querySelector('#reserve').appendChild(div);
+    div.innerHTML = 'Votre reservation a bien été prise en compte';
+    div.classList.add('reserve-success');
+    btnSubmit.value = 'Fermer';
+    btnSubmit.addEventListener('click', (e) => {
+      closeModal();
+      // resetForm();
+    });
   }
 }
+
+// Resets the form
+// function resetForm() {
+//   const formData = document.querySelectorAll('.formData');
+//   const textLabel = document.querySelector('.text-label');
+//   for (const forms of formData) {
+//     forms.classList.remove('hide');
+//   }
+//   textLabel.classList.remove('hide');
+//   btnSubmit.value = "C'est parti";
+// }

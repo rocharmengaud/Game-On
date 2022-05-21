@@ -215,6 +215,37 @@ input {
   border: 2.5px solid #4714fe;
 }
 
+.hidden {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: #000;
+  display: none;
+}
+
+.first-error, .last-error, .email-error, .birthdate-error, .quantity-error, .location-error, .cgu-error {
+  font-size: 0.6em;
+  color: #e54858;
+  display: block;
+  margin-top: 7px;
+  margin-bottom: 7px;
+  text-align: right;
+  line-height: 1em;
+  transition: 0.3s;
+}
+
+.hide {
+  opacity: 0;
+}
+
+.reserve-success {
+  position: absolute;
+  top: 50%;
+  text-align: center;
+}
+
+}
+
 .formData {
   padding-top: 1rem;
 }
