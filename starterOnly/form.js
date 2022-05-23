@@ -10,6 +10,7 @@ const radios = document.querySelectorAll('.checkbox-input[type=radio]');
 // on crée la variable qui va contenir la case des conditions générales
 const conditionsGenerales = document.querySelector('#checkbox1');
 const btnSubmit = document.querySelector('.btn-submit');
+const btnSignUp = document.querySelector('.btn-signup');
 
 // On crée une variable contenant une fonction qui va vérifier tous les champs du formulaire
 function validateInputs() {
@@ -124,7 +125,6 @@ function validateConditions() {
 form.addEventListener('submit', (e) => {
   // Webpage not reloading after clicking on submit
   e.preventDefault();
-  validateInputs();
   validateForm();
 });
 
@@ -145,25 +145,32 @@ function validateForm() {
       forms.classList.add('hide');
     }
     textLabel.classList.add('hide');
-    let div = document.createElement('div');
+    const div = document.createElement('div');
     document.querySelector('#reserve').appendChild(div);
     div.innerHTML = 'Votre reservation a bien été prise en compte';
     div.classList.add('reserve-success');
     btnSubmit.value = 'Fermer';
     btnSubmit.addEventListener('click', (e) => {
+      const reserveSuccess = document.querySelector('.reserve-success');
+      reserveSuccess.remove();
       closeModal();
-      // resetForm();
     });
   }
 }
 
 // Resets the form
-// function resetForm() {
-//   const formData = document.querySelectorAll('.formData');
-//   const textLabel = document.querySelector('.text-label');
-//   for (const forms of formData) {
-//     forms.classList.remove('hide');
-//   }
-//   textLabel.classList.remove('hide');
-//   btnSubmit.value = "C'est parti";
-// }
+function resetForm() {
+  const formData = document.querySelectorAll('.formData');
+  const textLabel = document.querySelector('.text-label');
+  for (const forms of formData) {
+    forms.classList.remove('hide');
+  }
+  textLabel.classList.remove('hide');
+  btnSubmit.value = "C'est parti";
+}
+
+btnSignUp.addEventListener('click', (e) => {
+  const reserveSuccess = document.querySelector('.reserve-success');
+  reserveSuccess.remove();
+  resetForm();
+});

@@ -223,7 +223,13 @@ input {
   display: none;
 }
 
-.first-error, .last-error, .email-error, .birthdate-error, .quantity-error, .location-error, .cgu-error {
+.first-error,
+.last-error,
+.email-error,
+.birthdate-error,
+.quantity-error,
+.location-error,
+.cgu-error {
   font-size: 0.6em;
   color: #e54858;
   display: block;
@@ -244,8 +250,6 @@ input {
   text-align: center;
 }
 
-}
-
 .formData {
   padding-top: 1rem;
 }
@@ -262,6 +266,7 @@ input {
   opacity: 0;
   transition: 0.3s;
 }
+
 .formData[data-error-visible='true']::after {
   opacity: 1;
 }
