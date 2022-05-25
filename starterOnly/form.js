@@ -125,6 +125,7 @@ function validateConditions() {
 form.addEventListener('submit', (e) => {
   // Webpage not reloading after clicking on submit
   e.preventDefault();
+  validateInputs();
   validateForm();
 });
 
@@ -173,4 +174,5 @@ btnSignUp.addEventListener('click', (e) => {
   const reserveSuccess = document.querySelector('.reserve-success');
   reserveSuccess.remove();
   resetForm();
+  document.querySelector('#reserve').reset();
 });
