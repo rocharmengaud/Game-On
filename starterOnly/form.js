@@ -12,7 +12,7 @@ const conditionsGenerales = document.querySelector('#checkbox1');
 const btnSubmit = document.querySelector('.btn-submit');
 const btnSignUp = document.querySelector('.btn-signup');
 
-// On crée une variable contenant une fonction qui va vérifier tous les champs du formulaire
+// On crée une fonction qui va vérifier tous les champs du formulaire chacun leur tour
 function validateInputs() {
   validateFirst();
   validateLast();
@@ -23,7 +23,7 @@ function validateInputs() {
   validateBirthdate();
 }
 
-// On crée une variable qui va contenir tous les messages d'erreur
+// On crée une constante qui va contenir tous les messages d'erreur
 const errorMessages = {
   lastNameError:
     'Veuillez entrer un nom comportant 2 caractères ou plus. Les chiffres ne sont pas autorisés.',
@@ -38,8 +38,6 @@ const errorMessages = {
 
 // Checks the first name
 function validateFirst() {
-  // console.log(first.value);
-  // .value correspond à une propriété definie d'un élément en JS
   const firstLength = first.value.length;
   const regex = /^[a-zA-Z]{2,}$/;
   if (firstLength < 2 || regex.test(first.value) === false) {
@@ -75,6 +73,7 @@ function validateEmail() {
   return true;
 }
 
+// Checks if the user has typed a valid birthdate
 function validateBirthdate() {
   const regex = /^[0-9]{4}-[0-9]{2}-[0-9]{2}$/;
   if (regex.test(birthdate.value) === false) {
@@ -86,7 +85,7 @@ function validateBirthdate() {
   return true;
 }
 
-// Checks if the user has selected a quantity
+// Checks if the user has selected a valid quantity
 function validateQuantity() {
   const regex = /^[0-9]{1,2}$/;
   if (regex.test(quantity.value) === false) {
@@ -111,7 +110,7 @@ function validateLocation() {
   return false;
 }
 
-// Checks if the user has checked the cgu
+// Checks if the user has checked the cgu (Conditions générales d'utilisation)
 function validateConditions() {
   if (conditionsGenerales.checked === true) {
     document.querySelector('.cgu-error').innerText = '';
@@ -142,6 +141,8 @@ function validateForm() {
     validateConditions() &&
     validateBirthdate() === true
   ) {
+    // Ici, on crée un tableau de toutes les classes formData avec for of, on cache l'interieur du contenu de la modale
+    // et on affiche le message de succès en son milieu
     for (const forms of formData) {
       forms.classList.add('hide');
     }
@@ -150,6 +151,7 @@ function validateForm() {
     document.querySelector('#reserve').appendChild(div);
     div.innerHTML = 'Votre reservation a bien été prise en compte';
     div.classList.add('reserve-success');
+    // Ici on renomme le bouton "submit" en "fermer" et on fait en sorte qu'il ferme la modale
     btnSubmit.value = 'Fermer';
     btnSubmit.addEventListener('click', (e) => {
       const reserveSuccess = document.querySelector('.reserve-success');
@@ -159,7 +161,7 @@ function validateForm() {
   }
 }
 
-// Resets the form
+// Resets the form but not the inputs
 function resetForm() {
   const formData = document.querySelectorAll('.formData');
   const textLabel = document.querySelector('.text-label');
@@ -170,6 +172,7 @@ function resetForm() {
   btnSubmit.value = "C'est parti";
 }
 
+// Resets the inputs and removes the reserve-success class
 btnSignUp.addEventListener('click', (e) => {
   const reserveSuccess = document.querySelector('.reserve-success');
   reserveSuccess.remove();

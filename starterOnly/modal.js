@@ -1,3 +1,13 @@
+function editNav() {
+  const x = document.querySelector('#myTopnav');
+  if (x === null) return;
+  if (x.className === 'topnav') {
+    x.className += ' responsive';
+  } else {
+    x.className = 'topnav';
+  }
+}
+
 // DOM Elements
 const modalbg = document.querySelector('.bground');
 const modalBtn = document.querySelectorAll('.modal-btn');
@@ -10,8 +20,6 @@ modalBtn.forEach((btn) => btn.addEventListener('click', launchModal));
 
 // launch modal form
 function launchModal() {
-  // ici on aurait pu écrire
-  // document.querySelector('.bground'); équivaut à : const modalbg = document.querySelector('.bground');
   modalbg.style.display = 'block';
 }
 
