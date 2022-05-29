@@ -41,6 +41,7 @@ function validateFirst() {
   const firstLength = first.value.length;
   const regex = /^[a-zA-Z]{2,}$/;
   if (firstLength < 2 || regex.test(first.value) === false) {
+    // on crée au préalable la div avec la classe .first-error
     document.querySelector('.first-error').innerText =
       errorMessages.firstNameError;
     return false;
@@ -141,7 +142,7 @@ function validateForm() {
     validateConditions() &&
     validateBirthdate() === true
   ) {
-    // Ici, on crée un tableau de toutes les classes formData avec for of, on cache l'interieur du contenu de la modale
+    // Ici, on crée un tableau de toutes les classes formData avec for of, puis, on cache l'interieur du contenu de la modale
     // et on affiche le message de succès en son milieu
     for (const forms of formData) {
       forms.classList.add('hide');
